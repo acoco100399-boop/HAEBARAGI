@@ -1,3 +1,160 @@
-@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Serif+KR:wght@500;700&display=swap');
+:root {
+  --cream: #fff9ed;
+  --butter: #f8db99;
+  --orange: #f09a3e;
+  --orange-dark: #bd672b;
+  --brown: #684731;
+  --green: #71855a;
+  --pink: #f5b5a7;
+  --line: #dfc18a;
+}
 
-: --?; 
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--brown);
+  font-family: "Gaegu", sans-serif;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255,255,255,.9) 0 3px, transparent 4px),
+    linear-gradient(135deg, #fffaf0, #f7edcf);
+}
+
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+
+.app-shell { min-height: 100vh; }
+
+.topbar {
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  background: rgba(255, 249, 237, .94);
+  border-bottom: 2px solid rgba(189,103,43,.12);
+}
+
+.brand { border: 0; background: none; color: var(--orange-dark); }
+.brand strong { display: block; font-family: "Noto Serif KR", serif; font-size: 25px; }
+.brand small { display: block; margin-top: -3px; color: #a5724f; }
+
+.nav-actions { display: flex; gap: 10px; }
+.nav-button, .primary-button, .seed-button {
+  border: 2px solid var(--orange);
+  border-radius: 999px;
+  background: #fffaf1;
+  color: var(--brown);
+  padding: 9px 16px;
+  font-weight: 700;
+}
+.primary-button, .seed-button { background: var(--orange); color: white; box-shadow: 0 5px 0 #c66e2d; }
+.primary-button:active, .seed-button:active { transform: translateY(3px); box-shadow: 0 2px 0 #c66e2d; }
+
+.hero {
+  min-height: calc(100vh - 74px);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  align-items: center;
+  gap: 4vw;
+  padding: 6vh 8vw;
+  overflow: hidden;
+}
+
+.hero-copy { position: relative; z-index: 2; }
+.hero-kicker { display: inline-block; margin-bottom: 12px; color: var(--orange-dark); letter-spacing: .15em; }
+.hero h1 { margin: 0; font-family: "Noto Serif KR", serif; font-size: clamp(48px, 7vw, 92px); line-height: 1; }
+.hero h1 span { color: var(--orange); }
+.hero-subtitle { margin: 20px 0 32px; font-size: clamp(21px, 2vw, 29px); color: #82624a; }
+.hero .primary-button { padding: 14px 28px; font-size: 21px; }
+
+.shop-illustration {
+  position: relative;
+  min-height: 520px;
+  border-radius: 48% 48% 18px 18px;
+  background: #f5c969;
+  border: 12px solid #fff7df;
+  box-shadow: 0 28px 60px rgba(112,70,35,.18);
+}
+.shop-illustration::before {
+  content: "";
+  position: absolute;
+  left: 8%; right: 8%; top: 17%; height: 42%;
+  background: #b96f38;
+  border: 8px solid #fff1c8;
+  border-radius: 110px 110px 10px 10px;
+}
+.shop-illustration::after {
+  content: "";
+  position: absolute;
+  left: -2%; right: -2%; top: 46%; height: 58px;
+  background: repeating-linear-gradient(90deg, #fff4d5 0 38px, #f1a34c 38px 76px);
+  border-radius: 4px;
+  box-shadow: 0 8px 0 #b8793c;
+}
+.door { position: absolute; z-index: 2; width: 24%; height: 42%; right: 38%; bottom: 4%; border: 7px solid #fff1c8; background: #9d5733; border-radius: 70px 70px 4px 4px; }
+.door::after { content: ""; position: absolute; right: 12px; top: 46%; width: 9px; height: 9px; border-radius: 50%; background: #f5d075; }
+.flower-row { position: absolute; z-index: 3; bottom: 11%; left: 7%; right: 7%; display: flex; justify-content: space-between; }
+.flower { position: relative; width: 65px; height: 115px; }
+.flower::before { content: "✿"; position: absolute; top: 0; width: 54px; height: 54px; display: grid; place-items: center; border-radius: 50%; background: #efc64b; color: #d66a38; font-size: 38px; }
+.flower::after { content: ""; position: absolute; width: 8px; height: 72px; left: 24px; top: 48px; background: #71855a; border-radius: 8px; }
+
+.modal-backdrop { position: fixed; z-index: 20; inset: 0; display: grid; place-items: center; background: rgba(91,58,37,.38); backdrop-filter: blur(5px); }
+.modal { width: min(430px, calc(100vw - 32px)); padding: 30px; text-align: center; border: 3px solid #fff6df; border-radius: 28px; background: var(--cream); box-shadow: 0 24px 70px rgba(88,54,32,.25); }
+.modal h2 { margin: 0 0 8px; font-family: "Noto Serif KR", serif; }
+.modal p { margin-top: 0; color: #9a795f; }
+.modal input { width: 100%; margin: 12px 0 18px; border: 2px solid var(--line); border-radius: 14px; background: white; padding: 13px 15px; outline: none; }
+.modal input:focus { border-color: var(--orange); }
+
+.shop-page, .garden-page { min-height: calc(100vh - 74px); }
+.shop-page { padding: 42px 5vw; background: #fdf5df; }
+.page-heading { display: flex; align-items: end; justify-content: space-between; margin-bottom: 24px; }
+.page-heading h1 { margin: 0; font-family: "Noto Serif KR", serif; }
+.page-heading p { margin: 4px 0 0; color: #9a795f; }
+.seed-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+.seed-card { position: relative; min-height: 210px; border: 2px solid #ead79f; border-radius: 24px; background: #fffaf0; text-align: center; padding: 22px 14px 16px; }
+.seed-card .bloom { height: 112px; display: grid; place-items: center; font-size: 82px; filter: saturate(.85); }
+.seed-card h3 { margin: 2px 0 4px; }
+.seed-card small { color: #a27c60; }
+.seed-button { width: 100%; margin-top: 12px; }
+.seed-button.purchased { background: #91a16e; border-color: #91a16e; box-shadow: 0 5px 0 #66744d; }
+
+.garden-page { position: relative; padding: 34px 5vw 150px; background: linear-gradient(#fffaf0 0 43%, #b8cc88 43% 100%); }
+.garden-tools { display: flex; justify-content: space-between; align-items: center; }
+.garden-tools h1 { margin: 0; font-family: "Noto Serif KR", serif; }
+.share-button { border: 0; border-radius: 999px; background: #fff1c8; color: var(--brown); padding: 10px 16px; }
+.garden-bed { position: relative; max-width: 760px; height: 380px; margin: 26px auto 0; border: 14px solid #9a6543; border-radius: 28px; background:
+  radial-gradient(circle at 20% 30%, #80533a 0 3px, transparent 4px),
+  radial-gradient(circle at 70% 65%, #9a6848 0 4px, transparent 5px),
+  #72492f;
+  box-shadow: inset 0 12px 30px rgba(70,38,24,.24);
+}
+.planted-flower { position: absolute; width: 74px; transform: translate(-50%, -72%); text-align: center; }
+.planted-flower .bloom { display: block; font-size: 52px; line-height: 1; filter: drop-shadow(0 4px 2px rgba(60,40,25,.15)); }
+.planted-flower .stem { display: block; width: 7px; height: 38px; margin: -5px auto 0; border-radius: 6px; background: #62784a; }
+.planted-flower .name-tag { position: relative; z-index: 2; display: inline-block; max-width: 90px; margin-top: 3px; padding: 3px 8px; border: 2px solid #fff4cc; border-radius: 8px; background: #fffaf0; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.seed-tray { position: fixed; z-index: 10; left: 50%; bottom: 16px; transform: translateX(-50%); width: min(700px, calc(100vw - 24px)); min-height: 116px; display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 3px solid #e6c98d; border-radius: 24px; background: rgba(255,250,237,.96); box-shadow: 0 12px 30px rgba(91,59,39,.18); }
+.seed-tray-title { min-width: 78px; color: #9a795f; }
+.inventory-seed { min-width: 82px; text-align: center; border: 0; background: transparent; }
+.inventory-seed span { display: block; font-size: 34px; }
+.inventory-seed small { display: block; }
+.empty-tray { width: 100%; text-align: center; color: #a58c71; }
+
+.message-modal textarea { width: 100%; min-height: 100px; resize: vertical; margin: 8px 0 14px; border: 2px solid var(--line); border-radius: 14px; padding: 12px; outline: none; }
+.message-modal textarea:focus { border-color: var(--orange); }
+
+@media (max-width: 760px) {
+  .topbar { height: 66px; padding: 0 16px; }
+  .brand strong { font-size: 21px; }
+  .nav-actions .nav-button:first-child { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 42px 20px; text-align: center; }
+  .hero-copy { order: 2; }
+  .shop-illustration { min-height: 350px; order: 1; }
+  .flower { width: 48px; }
+  .flower:nth-child(n+5) { display: none; }
+  .seed-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .garden-bed { height: 330px; }
+  .garden-page { padding-left: 12px; padding-right: 12px; }
+}
